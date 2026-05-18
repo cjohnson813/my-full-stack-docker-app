@@ -1,21 +1,20 @@
 services:
   nginx:
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile
+    image: cjohnson813/nginx:b290c4c
+
     container_name: nginx-container
     ports:
       - "80:80"
     depends_on:
       - frontend
-      - backend
+      - backend-1
+      - backend-2
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
+    image: cjohnson813/frontend:b290c4c
     container_name: frontend-container
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    container_name: backend-container
+  backend-1:
+    image: cjohnson813/backend-1:b290c4c
+    container_name: backend-container-1
+  backend-2:
+    image: cjohnson813/backend-2:b290c4c
+    container_name: backend-container-2
